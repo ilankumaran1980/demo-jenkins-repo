@@ -28,6 +28,12 @@ pipeline {
                 echo 'This is Build Stage'
             }
         }                           
+        stage('Deploy Stage') {
+            steps {
+                echo 'Deploying application to environment...'
+            }
+        }
+
         stage('Build Success') {
             steps {
                 echo 'Build successful'
