@@ -18,16 +18,29 @@ pipeline {
                 echo 'clean success'
             }
         }          
+
         stage('Test Stage') {
             steps {
                 echo 'This is Clean Success Stage'
             }
         }                           
+
         stage('Build & Install Stage') {
             steps {
                 echo 'This is Build Stage'
             }
         }                           
+
+        stage('Deployment Approval') {
+            steps {
+                script {
+                    // Pauses pipeline until approved or aborted in the Jenkins UI
+                    input message: 'Do you approve deploying this build to the environment?', 
+                          ok: 'Approve Deployment'
+                }
+            }
+        }
+
         stage('Deploy Stage') {
             steps {
                 echo 'Deploying application to environment...'
